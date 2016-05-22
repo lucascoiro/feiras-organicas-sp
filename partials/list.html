@@ -1,0 +1,46 @@
+<header class="zone-list__header">
+    <div class="zone-list__header-nav">
+        <h1 class="zone-list__header-title">Feiras Livres em São Paulo</h1>
+    </div>
+    <div class="zone-list__header-search">
+        <input type="text" ng-model="filterZone" placeholder="Busque pelo nome do local ou bairro" class="zone-list__filter"/>
+        <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+</header>
+
+<section>
+  <ul class="zone-list">
+      <li ng-repeat="item in zoneItem | orderBy:nome | filter:filterZone" class="zone-list-container">
+
+          <label for="item_{{item.ID}}" class="zone-list__item">
+            <span class="zone-list__neighborhood">FEIRA</span>
+            <strong class="zone-list__title">{{item.NOME_FEIRA}}</strong>
+          </label>
+
+          <input type="checkbox" id="item_{{item.ID}}" class="zone-list--expand" />
+          <div class="zone-detail__info">
+              <address class="zone-list__address">
+
+              <table width="100%">
+                <tr>
+                  <td>
+              <span>Endereço</span>
+                {{item.LOGRADOURO}}, {{item.NUMERO}}, {{item.BAIRRO}}
+                <span>Região:</span>
+                {{item.REGIAO5}}
+                <span>Ponto de Referência:</span>
+                {{item.REFERENCIA}}
+
+              </td><td>
+                <a href="https://www.google.com.br/maps/dir/{{item.LOGRADOURO}},{{item.NUMERO}},{{item.BAIRRO}}" target="_blank" class="zone-map-link">
+                  <img src="img/route.png" width="50" /><span>Rota</span>
+                </a></td>
+              </tr>
+            </table>
+              </address>
+
+          </div>
+          <span class="status-info"></span>
+      </li>
+  </ul>
+</section>
